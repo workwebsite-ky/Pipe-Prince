@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pipe Prince | Premium Plumbing Services</title>
+<meta name="description" content="Pipe Prince offers luxury-grade plumbing, drain cleaning, emergency repair, and installation services. Trusted professionals delivering precision and care to your home."/>
+<meta name="keywords" content="plumbing services, emergency plumber, drain cleaning, pipe repair, water heater installation, professional plumber"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ===== VARIABLES ===== */
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --steel: #1e3a5f;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e8c0;
+    --white: #f8f9fa;
+    --gray: #a0aec0;
+    --light-gray: #e2e8f0;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    --shadow: 0 20px 60px rgba(0,0,0,0.4);
+    --shadow-gold: 0 8px 30px rgba(201,168,76,0.25);
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* ===== LOADER ===== */
+  #loader {
+    position: fixed; inset: 0; background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-crown {
+    font-size: 3rem; animation: crownPulse 1s infinite alternate;
+    font-family: var(--font-display); color: var(--gold);
+  }
+  .loader-text {
+    font-family: var(--font-display); color: var(--gold);
+    font-size: 1.4rem; letter-spacing: 8px; margin-top: 12px;
+    animation: fadeIn 0.5s ease;
+  }
+  .loader-inner { text-align: center; }
+  @keyframes crownPulse { from { transform: scale(1); } to { transform: scale(1.15) rotate(5deg); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 18px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: var(--transition);
+  }
+  nav.scrolled {
+    background: rgba(10,22,40,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 12px 5%;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .crown { font-size: 1.2rem; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    font-size: 0.88rem; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; color: var(--light-gray);
+    position: relative; transition: var(--transition);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 10px 22px; border-radius: 4px;
+    font-weight: 600 !important; letter-spacing: 1px !important;
+    transition: var(--transition) !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-2px); }
+  .nav-cta::after { display: none !important; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--gold);
+    transition: var(--transition); border-radius: 2px;
+  }
+  .mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,22,40,0.98); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 32px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--font-display); font-size: 2rem;
+    color: var(--white); transition: var(--transition);
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-close {
+    position: absolute; top: 24px; right: 5%;
+    font-size: 2rem; color: var(--gold); cursor: pointer;
+  }
+
+  /* ===== PAGES ===== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(to bottom right, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.65) 60%, rgba(201,168,76,0.1) 100%),
+      url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1600&q=80') center/cover no-repeat;
+    display: flex; align-items: center;
+    padding: 0 5%;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 200px;
+    background: linear-gradient(to top, var(--navy), transparent);
+  }
+  .hero-content { max-width: 720px; padding-top: 80px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold); font-size: 0.78rem;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 8px 18px; border-radius: 50px;
+    margin-bottom: 28px;
+    background: rgba(201,168,76,0.07);
+    animation: slideDown 0.8s ease both;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white); margin-bottom: 24px;
+    animation: slideUp 0.9s ease 0.2s both;
+  }
+  .hero-title span { color: var(--gold); }
+  .hero-subtitle {
+    font-size: 1.1rem; color: var(--gray);
+    max-width: 500px; margin-bottom: 40px;
+    line-height: 1.8;
+    animation: slideUp 0.9s ease 0.4s both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: slideUp 0.9s ease 0.6s both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 16px 36px; border-radius: 4px;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: var(--transition); cursor: pointer; border: none;
+    box-shadow: var(--shadow-gold);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light); transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.4);
+  }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 16px 36px; border-radius: 4px;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: var(--transition); cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover {
+    border-color: var(--gold); color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 60px;
+    animation: slideUp 0.9s ease 0.8s both;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 700; color: var(--gold);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+
+  @keyframes slideUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes slideDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ===== SECTIONS SHARED ===== */
+  section { padding: 100px 5%; }
+  .section-label {
+    display: inline-block; color: var(--gold);
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.15; color: var(--white);
+    margin-bottom: 20px;
+  }
+  .section-title span { color: var(--gold); }
+  .section-sub { color: var(--gray); max-width: 520px; font-size: 1rem; line-height: 1.8; }
+  .section-header { margin-bottom: 60px; }
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto; }
+
+  /* ===== ABOUT STRIP ===== */
+  #about-strip {
+    background: var(--navy-mid);
+    padding: 60px 5%;
+    display: flex; align-items: center;
+    gap: 60px; flex-wrap: wrap;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .about-strip-text { flex: 1; min-width: 280px; }
+  .about-strip-text p { color: var(--gray); font-size: 1rem; line-height: 1.9; }
+  .about-strip-img {
+    flex: 1; min-width: 280px;
+    height: 320px; border-radius: 8px; overflow: hidden;
+    position: relative;
+  }
+  .about-strip-img img { width: 100%; height: 100%; object-fit: cover; }
+  .about-strip-img::after {
+    content: ''; position: absolute; inset: 0;
+    border: 2px solid var(--gold); border-radius: 8px;
+    transform: translate(12px, 12px); z-index: -1;
+  }
+  .gold-line {
+    width: 60px; height: 3px; background: var(--gold);
+    margin-bottom: 20px; border-radius: 2px;
+  }
+
+  /* ===== SERVICES GRID ===== */
+  #services-section { background: var(--navy); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .service-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 12px; padding: 40px 36px;
+    transition: var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); box-shadow: var(--shadow-gold); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2.4rem; margin-bottom: 20px; }
+  .service-card h3 {
+    font-family: var(--font-display); font-size: 1.3rem;
+    color: var(--white); margin-bottom: 12px;
+  }
+  .service-card p { color: var(--gray); font-size: 0.92rem; line-height: 1.8; }
+
+  /* ===== WHY US ===== */
+  #why-us {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--steel) 100%);
+    position: relative; overflow: hidden;
+  }
+  #why-us::before {
+    content: ''; position: absolute;
+    right: -200px; top: -200px; width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .why-list { display: flex; flex-direction: column; gap: 28px; }
+  .why-item { display: flex; gap: 20px; align-items: flex-start; }
+  .why-icon {
+    width: 52px; height: 52px; border-radius: 10px;
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0; transition: var(--transition);
+  }
+  .why-item:hover .why-icon { background: var(--gold); }
+  .why-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--white); }
+  .why-item p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+  .why-image {
+    border-radius: 16px; overflow: hidden;
+    height: 500px; position: relative;
+  }
+  .why-image img { width: 100%; height: 100%; object-fit: cover; }
+  .why-badge {
+    position: absolute; bottom: 30px; left: 30px;
+    background: rgba(10,22,40,0.9); backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px; padding: 20px 24px;
+  }
+  .why-badge-num {
+    font-family: var(--font-display); font-size: 2rem;
+    font-weight: 700; color: var(--gold);
+  }
+  .why-badge-text { font-size: 0.8rem; color: var(--gray); }
+
+  /* ===== TESTIMONIALS ===== */
+  #testimonials { background: var(--navy); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .testi-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 12px; padding: 36px;
+    transition: var(--transition);
+  }
+  .testi-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+  .stars { color: var(--gold); font-size: 1rem; margin-bottom: 18px; letter-spacing: 2px; }
+  .testi-text { color: var(--gray); font-size: 0.93rem; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--steel));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem; color: var(--navy);
+  }
+  .testi-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+  .testi-loc { font-size: 0.78rem; color: var(--gray); }
+
+  /* ===== CTA STRIP ===== */
+  #cta-strip {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    padding: 70px 5%;
+    text-align: center;
+  }
+  #cta-strip h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--navy); font-weight: 900; margin-bottom: 16px;
+  }
+  #cta-strip p { color: rgba(10,22,40,0.7); margin-bottom: 36px; font-size: 1rem; }
+  .btn-dark {
+    background: var(--navy); color: var(--gold);
+    padding: 16px 40px; border-radius: 4px;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: var(--transition); cursor: pointer; border: none;
+    display: inline-block;
+  }
+  .btn-dark:hover { background: var(--navy-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+
+  /* ===== FAQ ===== */
+  #faq { background: var(--navy-mid); }
+  .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
+  .faq-item {
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 8px; overflow: hidden;
+    background: var(--navy);
+  }
+  .faq-q {
+    padding: 22px 28px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--white); transition: var(--transition);
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-q .faq-icon {
+    width: 28px; height: 28px;
+    border: 1px solid rgba(201,168,76,0.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1.2rem; transition: transform 0.3s ease;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease;
+    color: var(--gray); font-size: 0.9rem; line-height: 1.8;
+    padding: 0 28px;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 28px 22px; }
+
+  /* ===== SERVICES PAGE ===== */
+  .page-hero {
+    min-height: 45vh;
+    background: linear-gradient(to bottom, rgba(10,22,40,0.7), var(--navy)),
+      url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80') center/cover;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 5% 60px;
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900; color: var(--white); margin-bottom: 16px;
+  }
+  .page-hero p { color: var(--gray); font-size: 1.05rem; max-width: 560px; }
+  .full-services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px; padding: 80px 5%;
+    background: var(--navy);
+  }
+  .full-service-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 12px; overflow: hidden;
+    transition: var(--transition);
+  }
+  .full-service-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); }
+  .fs-img { height: 200px; overflow: hidden; }
+  .fs-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .full-service-card:hover .fs-img img { transform: scale(1.06); }
+  .fs-body { padding: 30px 28px; }
+  .fs-body h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--white); margin-bottom: 10px; }
+  .fs-body p { color: var(--gray); font-size: 0.9rem; line-height: 1.8; margin-bottom: 18px; }
+  .fs-tag {
+    display: inline-block; background: rgba(201,168,76,0.12);
+    color: var(--gold); font-size: 0.75rem;
+    padding: 5px 14px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ===== PRICING PAGE ===== */
+  .pricing-section {
+    background: var(--navy); padding: 80px 5%;
+    text-align: center;
+  }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; max-width: 1100px; margin: 60px auto 0;
+    align-items: start;
+  }
+  .price-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 16px; padding: 44px 36px;
+    transition: var(--transition);
+    position: relative;
+  }
+  .price-card.popular {
+    border-color: var(--gold);
+    transform: scale(1.04);
+    box-shadow: var(--shadow-gold);
+  }
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 6px 20px; border-radius: 20px;
+  }
+  .price-card:hover:not(.popular) { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); }
+  .price-name {
+    font-family: var(--font-display); font-size: 1.4rem;
+    color: var(--white); margin-bottom: 8px; font-weight: 700;
+  }
+  .price-tagline { color: var(--gray); font-size: 0.85rem; margin-bottom: 28px; }
+  .price-num {
+    font-family: var(--font-display); font-size: 3.2rem;
+    color: var(--gold); font-weight: 900; line-height: 1;
+  }
+  .price-num sup { font-size: 1.4rem; vertical-align: super; }
+  .price-period { color: var(--gray); font-size: 0.85rem; margin-bottom: 32px; margin-top: 6px; }
+  .price-features {
+    list-style: none; display: flex; flex-direction: column;
+    gap: 14px; margin-bottom: 36px; text-align: left;
+  }
+  .price-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--gray); }
+  .price-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+  /* ===== ABOUT PAGE ===== */
+  .about-hero {
+    background: linear-gradient(to bottom, rgba(10,22,40,0.75), var(--navy)),
+      url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80') center/cover;
+    min-height: 50vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 5% 80px;
+  }
+  .about-story {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    padding: 80px 5%; background: var(--navy);
+  }
+  .about-story-img { border-radius: 12px; overflow: hidden; height: 440px; }
+  .about-story-img img { width: 100%; height: 100%; object-fit: cover; }
+  .about-story-text h2 {
+    font-family: var(--font-display); font-size: 2rem;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .about-story-text p { color: var(--gray); font-size: 0.95rem; line-height: 1.9; margin-bottom: 20px; }
+  .values-section { background: var(--navy-mid); padding: 80px 5%; }
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 50px; }
+  .value-card {
+    background: var(--navy); border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 10px; padding: 32px 28px; transition: var(--transition);
+  }
+  .value-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+  .value-icon { font-size: 2rem; margin-bottom: 16px; }
+  .value-card h4 { font-family: var(--font-display); font-size: 1.1rem; color: var(--white); margin-bottom: 10px; }
+  .value-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+  .trust-badges {
+    padding: 60px 5%; background: var(--navy);
+    display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+  }
+  .badge {
+    border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;
+    padding: 28px 36px; text-align: center; min-width: 180px;
+    background: var(--navy-mid); transition: var(--transition);
+  }
+  .badge:hover { border-color: var(--gold); }
+  .badge-num {
+    font-family: var(--font-display); font-size: 2.4rem;
+    color: var(--gold); font-weight: 700;
+  }
+  .badge-label { font-size: 0.78rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; }
+
+  /* ===== CONTACT PAGE ===== */
+  .contact-section {
+    background: var(--navy); padding: 80px 5%;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start;
+  }
+  .contact-info h2 { font-family: var(--font-display); font-size: 2rem; color: var(--white); margin-bottom: 20px; }
+  .contact-info p { color: var(--gray); font-size: 0.95rem; line-height: 1.8; margin-bottom: 36px; }
+  .contact-items { display: flex; flex-direction: column; gap: 22px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-item-icon {
+    width: 46px; height: 46px; border-radius: 10px;
+    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-item-text strong { font-weight: 600; color: var(--white); font-size: 0.9rem; display: block; margin-bottom: 4px; }
+  .contact-item-text span { color: var(--gray); font-size: 0.88rem; }
+  .contact-form { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.12); border-radius: 16px; padding: 44px; }
+  .contact-form h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 30px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 0.8rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px; padding: 14px 18px;
+    color: var(--white); font-family: var(--font-body); font-size: 0.92rem;
+    transition: var(--transition); outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy-mid); }
+  .map-placeholder {
+    width: 100%; height: 300px; background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px; margin-top: 40px; color: var(--gray);
+  }
+  .map-placeholder .map-icon { font-size: 2.5rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #060e1a;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 60px 5% 30px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 50px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 16px; font-size: 1.4rem; }
+  .footer-brand p { color: var(--gray); font-size: 0.88rem; line-height: 1.8; max-width: 280px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+  .social-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: var(--transition); cursor: pointer;
+  }
+  .social-icon:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .footer-col h4 { font-weight: 600; font-size: 0.88rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul li a { color: var(--gray); font-size: 0.88rem; transition: var(--transition); }
+  .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 24px; display: flex;
+    justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { color: var(--gray); font-size: 0.82rem; }
+
+  /* ===== BACK TO TOP ===== */
+  #back-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 46px; height: 46px;
+    background: var(--gold); color: var(--navy);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; cursor: pointer;
+    opacity: 0; visibility: hidden; transition: var(--transition);
+    z-index: 900; box-shadow: var(--shadow-gold); border: none;
+  }
+  #back-top.visible { opacity: 1; visibility: visible; }
+  #back-top:hover { transform: translateY(-4px); background: var(--gold-light); }
+
+  /* ===== WHATSAPP ===== */
+  #whatsapp {
+    position: fixed; bottom: 86px; right: 30px;
+    width: 46px; height: 46px;
+    background: #25D366; color: white;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; cursor: pointer;
+    z-index: 900; box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    transition: var(--transition);
+  }
+  #whatsapp:hover { transform: translateY(-4px); }
+
+  /* ===== REVEAL ANIMATION ===== */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0; transform: translateX(-30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--gold); color: var(--navy);
+    padding: 14px 28px; border-radius: 6px;
+    font-weight: 600; font-size: 0.9rem;
+    opacity: 0; transition: var(--transition); z-index: 9000;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .why-grid, .about-story, .contact-section { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .price-card.popular { transform: scale(1); }
+    nav { padding: 16px 5%; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    #about-strip { flex-direction: column; }
+    .contact-form { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-crown">👑</div>
+    <div class="loader-text">PIPE PRINCE</div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-logo"><span class="crown">👑</span> Pipe Prince</div>
+  <div class="nav-links">
+    <a href="#" class="active" onclick="showPage('home',this)">Home</a>
+    <a href="#" onclick="showPage('services',this)">Services</a>
+    <a href="#" onclick="showPage('pricing',this)">Pricing</a>
+    <a href="#" onclick="showPage('about',this)">About</a>
+    <a href="#" class="nav-cta" onclick="showPage('contact',this)">Get a Quote</a>
+  </div>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMobile()">✕</span>
+  <a href="#" onclick="showPage('home',null);toggleMobile()">Home</a>
+  <a href="#" onclick="showPage('services',null);toggleMobile()">Services</a>
+  <a href="#" onclick="showPage('pricing',null);toggleMobile()">Pricing</a>
+  <a href="#" onclick="showPage('about',null);toggleMobile()">About</a>
+  <a href="#" onclick="showPage('contact',null);toggleMobile()">Contact</a>
+</div>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">⭐ Karachi's #1 Plumbing Specialists</div>
+      <h1 class="hero-title">Royal Precision<br/>in Every <span>Pipe</span></h1>
+      <p class="hero-subtitle">We bring luxury-grade plumbing solutions to residential and commercial spaces. Licensed, insured, and available 24/7 for all your plumbing needs.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact',null)">Get a Free Quote</button>
+        <button class="btn-outline" onclick="showPage('services',null)">View Services</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num" data-target="1200">0+</div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="15">0+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="98">0%</div>
+          <div class="stat-label">Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <div id="about-strip">
+    <div class="about-strip-text">
+      <div class="gold-line"></div>
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">Premium Plumbing,<br/><span>Regal Results</span></h2>
+      <p>Pipe Prince is Karachi's premier plumbing service — built on a foundation of trust, technical expertise, and an unwavering commitment to quality. We handle everything from routine maintenance to complex installations with white-glove professionalism.</p>
+    </div>
+    <div class="about-strip-img">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Professional plumber at work" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section id="services-section">
+    <div class="section-header center reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Our Core <span>Services</span></h2>
+      <p class="section-sub">From emergency fixes to full installations, we offer comprehensive plumbing solutions delivered with precision and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🚿</div>
+        <h3>Bathroom Plumbing</h3>
+        <p>Full bathroom plumbing — from shower systems to toilet installations — delivered with flawless precision and premium fixtures.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔧</div>
+        <h3>Pipe Repair & Replacement</h3>
+        <p>Burst pipes, leaks, or corrosion? Our experts diagnose and resolve pipe issues fast, minimizing damage and downtime.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🚨</div>
+        <h3>24/7 Emergency Service</h3>
+        <p>Plumbing emergencies don't wait. Our rapid-response team is available around the clock, 365 days a year.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">♨️</div>
+        <h3>Water Heater Services</h3>
+        <p>Installation, repair, and maintenance of water heaters — conventional tanks, instant geysers, and solar systems.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏢</div>
+        <h3>Commercial Plumbing</h3>
+        <p>Large-scale commercial installations and maintenance for offices, hotels, restaurants, and industrial facilities.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔩</div>
+        <h3>Drain Cleaning</h3>
+        <p>Clogged drains cleared fast with professional-grade equipment. We restore proper flow without damaging your pipes.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:44px">
+      <button class="btn-primary" onclick="showPage('services',null)">View All Services</button>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us">
+    <div class="why-grid">
+      <div class="why-image reveal-left">
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80" alt="Expert plumber at work" loading="lazy"/>
+        <div class="why-badge">
+          <div class="why-badge-num">24/7</div>
+          <div class="why-badge-text">Emergency Support</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">The Royal Standard<br/>of <span>Plumbing</span></h2>
+        <p class="section-sub" style="margin-bottom:36px">We combine deep technical expertise with a luxury service ethic that elevates every project we take on.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">🏅</div>
+            <div>
+              <h4>Licensed & Certified Professionals</h4>
+              <p>Every technician is fully licensed, background-checked, and trained to the highest industry standards.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h4>Fast Response Times</h4>
+              <p>We arrive within 60 minutes for emergencies — because your time and property matter.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">💰</div>
+            <div>
+              <h4>Transparent, Upfront Pricing</h4>
+              <p>No hidden fees, no surprises. We provide detailed quotes before any work begins.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🛡️</div>
+            <div>
+              <h4>Fully Insured & Guaranteed</h4>
+              <p>All work is backed by our satisfaction guarantee. If it's not right, we fix it — at no extra cost.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-header center reveal">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">What Our Clients <span>Say</span></h2>
+      <p class="section-sub">Don't take our word for it — hear from homeowners and businesses who trust Pipe Prince.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Pipe Prince saved us during a nightmare burst pipe situation at midnight. The team arrived in under an hour and fixed everything professionally. Truly the best plumbers in Karachi."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ahmed Raza</div>
+            <div class="testi-loc">DHA Phase 5, Karachi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"We hired Pipe Prince for a complete bathroom renovation and the results were exceptional. Immaculate work, polite staff, and they finished ahead of schedule. Highly recommend!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sara Malik</div>
+            <div class="testi-loc">Clifton, Karachi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"As a restaurant owner, I need reliable commercial plumbing support. Pipe Prince has been our go-to for 3 years. Professional, fast, and always on time. Worth every rupee."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">Z</div>
+          <div>
+            <div class="testi-name">Zubair Khan</div>
+            <div class="testi-loc">Gulshan-e-Iqbal, Karachi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div id="cta-strip">
+    <h2>Ready for a Plumbing Upgrade?</h2>
+    <p>Contact us today for a free, no-obligation quote. Available 24/7 for emergencies.</p>
+    <button class="btn-dark" onclick="showPage('contact',null)">Book Your Service Now</button>
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-header center reveal">
+      <div class="section-label">Questions</div>
+      <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you offer emergency plumbing services? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes! Pipe Prince operates a 24/7 emergency response service. We aim to arrive within 60 minutes for urgent calls in Karachi and surrounding areas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Are your plumbers licensed and insured? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Absolutely. Every member of our team is fully licensed, insured, and background-checked. We carry full liability insurance for your peace of mind.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I get a quote? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Simply visit our Contact page and fill out the form, or call us directly. We provide free, no-obligation quotes before any work begins — no hidden fees.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What areas do you serve? <span class="faq-icon">+</span></div>
+        <div class="faq-a">We serve all major areas of Karachi including DHA, Clifton, Gulshan, PECHS, North Nazimabad, Korangi, and more. Contact us to confirm service availability in your area.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you provide a warranty on your work? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes, all our workmanship is backed by a satisfaction guarantee. If any issue arises from our work, we return to fix it at no additional charge within the warranty period.</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home page -->
+
+
+<!-- ===================== SERVICES PAGE ===================== -->
+<div id="page-services" class="page">
+  <div class="page-hero">
+    <div>
+      <div class="section-label" style="margin:0 auto 12px;display:block;text-align:center">Our Expertise</div>
+      <h1>Professional <span style="color:var(--gold)">Plumbing</span> Services</h1>
+      <p style="margin:0 auto;max-width:480px">Every service delivered with the precision and care that defines the Pipe Prince standard.</p>
+    </div>
+  </div>
+  <div class="full-services-grid">
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80" alt="Bathroom plumbing" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Bathroom Plumbing</h3>
+        <p>Complete bathroom plumbing installations and repairs — showers, bathtubs, toilets, washbasins, and all associated pipework. We work with premium fixtures and ensure leak-free results.</p>
+        <span class="fs-tag">Residential</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Pipe repair" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Pipe Repair & Replacement</h3>
+        <p>Expert diagnosis and repair of burst, leaking, or corroded pipes. We use modern pipe lining and replacement techniques that minimize disruption to your home or business.</p>
+        <span class="fs-tag">Emergency</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1581093196867-ca2f6c96f9b7?w=600&q=80" alt="Water heater" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Water Heater Installation</h3>
+        <p>Supply, installation, and maintenance of all types of water heaters — gas geysers, electric heaters, instant water systems, and solar water heating solutions.</p>
+        <span class="fs-tag">Installation</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Drain cleaning" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Drain & Sewer Cleaning</h3>
+        <p>Professional drain cleaning using high-pressure water jetting and mechanical snaking. We clear blockages in kitchen drains, bathrooms, and main sewer lines.</p>
+        <span class="fs-tag">Maintenance</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Commercial plumbing" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Commercial Plumbing</h3>
+        <p>Comprehensive plumbing services for offices, hotels, restaurants, hospitals, and industrial facilities. We handle design, installation, and long-term maintenance contracts.</p>
+        <span class="fs-tag">Commercial</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Kitchen plumbing" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Kitchen Plumbing</h3>
+        <p>Sink installation, dishwasher hookups, garbage disposal units, and complete kitchen repiping. We ensure every fitting is code-compliant and built to last.</p>
+        <span class="fs-tag">Residential</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80" alt="Water tank" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Water Tank Installation</h3>
+        <p>Overhead and underground water tank installation, cleaning, waterproofing, and associated pump systems. Ensuring reliable clean water supply for your property.</p>
+        <span class="fs-tag">Installation</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1590650046871-92c887180603?w=600&q=80" alt="Gas line" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Gas Line Services</h3>
+        <p>Safe installation, repair, and inspection of natural gas and LPG pipelines. Our certified technicians ensure full compliance with safety regulations.</p>
+        <span class="fs-tag">Specialized</span>
+      </div>
+    </div>
+    <div class="full-service-card reveal">
+      <div class="fs-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Renovation plumbing" loading="lazy"/></div>
+      <div class="fs-body">
+        <h3>Renovation Plumbing</h3>
+        <p>Complete plumbing overhaul for home and commercial renovations. We coordinate with contractors and architects to deliver seamless integration into any project.</p>
+        <span class="fs-tag">Renovation</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="cta-strip">
+    <h2>Need a Service Not Listed?</h2>
+    <p>Get in touch — we handle virtually every plumbing challenge with expert precision.</p>
+    <button class="btn-dark" onclick="showPage('contact',null)">Contact Us Today</button>
+  </div>
+</div>
+
+
+<!-- ===================== PRICING PAGE ===================== -->
+<div id="page-pricing" class="page">
+  <div class="page-hero" style="background-image: linear-gradient(to bottom, rgba(10,22,40,0.8), var(--navy)), url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80')">
+    <div>
+      <div class="section-label" style="text-align:center;display:block;margin-bottom:12px">Transparent Pricing</div>
+      <h1>Service <span style="color:var(--gold)">Packages</span></h1>
+      <p style="margin:0 auto;max-width:480px">Clear, upfront pricing with no hidden fees. Choose the package that fits your needs.</p>
+    </div>
+  </div>
+  <div class="pricing-section">
+    <div class="section-label">Our Plans</div>
+    <h2 class="section-title" style="margin-bottom:8px">Pick Your <span>Package</span></h2>
+    <p class="section-sub" style="margin:0 auto">All packages include licensed professionals, quality materials, and our satisfaction guarantee.</p>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name">Essential</div>
+        <div class="price-tagline">Perfect for single repairs & quick fixes</div>
+        <div class="price-num"><sup>Rs</sup>2,500</div>
+        <div class="price-period">starting per visit</div>
+        <ul class="price-features">
+          <li>Single-point repair or fix</li>
+          <li>Leaking tap / faucet repair</li>
+          <li>Basic drain unblocking</li>
+          <li>Toilet flush repair</li>
+          <li>30-day workmanship warranty</li>
+          <li>Same-day availability (subject to schedule)</li>
+        </ul>
+        <button class="btn-outline" style="width:100%;padding:14px" onclick="showPage('contact',null)">Book Now</button>
+      </div>
+      <div class="price-card popular reveal">
+        <div class="popular-badge">Most Popular</div>
+        <div class="price-name">Premium</div>
+        <div class="price-tagline">Full-service plumbing for homes</div>
+        <div class="price-num"><sup>Rs</sup>8,500</div>
+        <div class="price-period">starting per project</div>
+        <ul class="price-features">
+          <li>Comprehensive inspection included</li>
+          <li>Pipe repair or replacement</li>
+          <li>Bathroom fixture installation</li>
+          <li>Water heater service</li>
+          <li>Drain cleaning & jetting</li>
+          <li>90-day workmanship warranty</li>
+          <li>Priority scheduling</li>
+        </ul>
+        <button class="btn-primary" style="width:100%;padding:14px" onclick="showPage('contact',null)">Get This Package</button>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-name">Royal</div>
+        <div class="price-tagline">Complete plumbing solution for large projects</div>
+        <div class="price-num"><sup>Rs</sup>25,000</div>
+        <div class="price-period">starting per project</div>
+        <ul class="price-features">
+          <li>Full home / commercial plumbing</li>
+          <li>Complete renovation plumbing</li>
+          <li>Gas line installation</li>
+          <li>Water tank + pump system</li>
+          <li>1-year workmanship warranty</li>
+          <li>Dedicated project manager</li>
+          <li>24/7 priority hotline</li>
+          <li>Post-completion follow-up</li>
+        </ul>
+        <button class="btn-outline" style="width:100%;padding:14px" onclick="showPage('contact',null)">Get a Custom Quote</button>
+      </div>
+    </div>
+    <p style="color:var(--gray);font-size:0.85rem;margin-top:40px;">* Prices are starting rates. Final pricing depends on scope, materials, and location. Free quotes available.</p>
+  </div>
+
+  <section id="faq" style="background:var(--navy-mid)">
+    <div class="section-header center reveal">
+      <div class="section-label">Pricing FAQ</div>
+      <h2 class="section-title">Common <span>Questions</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Are these prices final? <span class="faq-icon">+</span></div>
+        <div class="faq-a">These are starting prices. We provide a free, detailed quote after assessing your specific needs. No work begins until you've approved the final price in writing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you charge for quotes? <span class="faq-icon">+</span></div>
+        <div class="faq-a">No. All initial assessments and quotes are completely free with no obligation to proceed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-icon">+</span></div>
+        <div class="faq-a">We accept cash, bank transfers (IBFT), and mobile payments via EasyPaisa and JazzCash. Payment is due upon completion of work.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div>
+      <div class="section-label" style="display:block;text-align:center;margin-bottom:12px">Our Story</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);color:var(--white);margin-bottom:16px">The <span style="color:var(--gold)">Pipe Prince</span> Story</h1>
+      <p style="color:var(--gray);max-width:540px;margin:0 auto;font-size:1rem">Built on a royal standard of service, trust, and technical excellence since 2010.</p>
+    </div>
+  </div>
+
+  <div class="about-story">
+    <div class="about-story-img reveal-left">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Pipe Prince team" loading="lazy"/>
+    </div>
+    <div class="reveal-right">
+      <div class="gold-line"></div>
+      <h2 class="about-story-text" style="font-family:var(--font-display);font-size:2rem;color:var(--white);margin-bottom:20px">From Humble Beginnings<br/>to Karachi's <span style="color:var(--gold)">Royal Plumbers</span></h2>
+      <p style="color:var(--gray);font-size:0.95rem;line-height:1.9;margin-bottom:16px">Pipe Prince was founded in 2010 with a single van, two skilled plumbers, and a mission to deliver plumbing services that homeowners could genuinely trust. In a market plagued by unreliable contractors and surprise fees, we chose a different path.</p>
+      <p style="color:var(--gray);font-size:0.95rem;line-height:1.9;margin-bottom:16px">Over 15 years, we've grown into Karachi's most sought-after plumbing company — serving thousands of residential and commercial clients across the city with the same unwavering commitment to quality that defined us from day one.</p>
+      <p style="color:var(--gray);font-size:0.95rem;line-height:1.9">Today, our team of 30+ licensed professionals handles everything from emergency callouts to full-scale commercial plumbing projects, each one delivered with what we call the Royal Standard.</p>
+    </div>
+  </div>
+
+  <div class="values-section">
+    <div class="section-header center reveal">
+      <div class="section-label">Our Foundation</div>
+      <h2 class="section-title">Mission, Vision & <span>Values</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon">🎯</div>
+        <h4>Our Mission</h4>
+        <p>To deliver premium plumbing solutions that protect and enhance properties, built on transparency, technical excellence, and genuine care for every client.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">🔭</div>
+        <h4>Our Vision</h4>
+        <p>To be Pakistan's most trusted plumbing company — where quality, honesty, and reliability define every interaction and every project we deliver.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">🤝</div>
+        <h4>Integrity</h4>
+        <p>We say what we'll do, and we do what we say. Honest quotes, fair pricing, and no shortcuts — ever.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">⚙️</div>
+        <h4>Craftsmanship</h4>
+        <p>Every joint, every fitting, every installation is executed with the precision of a true craftsman. No detail is too small.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-badges">
+    <div class="badge reveal">
+      <div class="badge-num">15+</div>
+      <div class="badge-label">Years in Business</div>
+    </div>
+    <div class="badge reveal">
+      <div class="badge-num">30+</div>
+      <div class="badge-label">Licensed Plumbers</div>
+    </div>
+    <div class="badge reveal">
+      <div class="badge-num">1,200+</div>
+      <div class="badge-label">Projects Completed</div>
+    </div>
+    <div class="badge reveal">
+      <div class="badge-num">98%</div>
+      <div class="badge-label">Client Satisfaction</div>
+    </div>
+    <div class="badge reveal">
+      <div class="badge-num">24/7</div>
+      <div class="badge-label">Emergency Availability</div>
+    </div>
+  </div>
+
+  <div id="cta-strip">
+    <h2>Experience the Royal Standard</h2>
+    <p>Join over 1,200 satisfied clients who trust Pipe Prince for all their plumbing needs.</p>
+    <button class="btn-dark" onclick="showPage('contact',null)">Book Your Service</button>
+  </div>
+</div>
+
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<div id="page-contact" class="page">
+  <div class="page-hero" style="background-image: linear-gradient(to bottom, rgba(10,22,40,0.8), var(--navy)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80')">
+    <div>
+      <div class="section-label" style="text-align:center;display:block;margin-bottom:12px">Get in Touch</div>
+      <h1>Contact <span style="color:var(--gold)">Pipe Prince</span></h1>
+      <p style="margin:0 auto;max-width:480px">Ready to get started? Reach out for a free quote or emergency assistance.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info reveal-left">
+      <div class="gold-line"></div>
+      <h2>Let's Talk <span style="color:var(--gold)">Plumbing</span></h2>
+      <p>Whether you have an emergency, need a quote, or want to discuss a large project — we're here and ready to help. Reach us through any of the channels below.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div class="contact-item-text">
+            <strong>Email Us</strong>
+            <span>contactglanders@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Location</strong>
+            <span>Serving all areas of Karachi, Pakistan</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-text">
+            <strong>Hours</strong>
+            <span>Mon–Sat: 8am–8pm | Emergency: 24/7</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">⚡</div>
+          <div class="contact-item-text">
+            <strong>Response Time</strong>
+            <span>We reply within 2 hours on business days</span>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-icon">📍</div>
+        <span style="font-size:0.9rem">Karachi, Pakistan</span>
+        <span style="font-size:0.8rem;color:var(--gray)">Serving all major areas</span>
+      </div>
+    </div>
+
+    <div class="contact-form reveal-right">
+      <h3>Send Us a Message</h3>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Ahmed" required/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Khan" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+92 300 000 0000"/>
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Bathroom Plumbing</option>
+            <option>Pipe Repair & Replacement</option>
+            <option>Emergency Service</option>
+            <option>Water Heater Service</option>
+            <option>Drain Cleaning</option>
+            <option>Commercial Plumbing</option>
+            <option>Gas Line Service</option>
+            <option>Water Tank Installation</option>
+            <option>Renovation Plumbing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your plumbing needs, location, and best time to visit..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;padding:16px;font-size:0.9rem">Send Message ✦</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo"><span class="crown">👑</span> Pipe Prince</div>
+      <p>Karachi's premier plumbing specialists. Licensed, insured, and dedicated to delivering the royal standard in every project we touch.</p>
+      <div class="footer-social">
+        <div class="social-icon">f</div>
+        <div class="social-icon">in</div>
+        <div class="social-icon">📷</div>
+        <div class="social-icon">𝕏</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('services',null)">Bathroom Plumbing</a></li>
+        <li><a href="#" onclick="showPage('services',null)">Pipe Repair</a></li>
+        <li><a href="#" onclick="showPage('services',null)">Water Heaters</a></li>
+        <li><a href="#" onclick="showPage('services',null)">Drain Cleaning</a></li>
+        <li><a href="#" onclick="showPage('services',null)">Commercial</a></li>
+        <li><a href="#" onclick="showPage('services',null)">Emergency 24/7</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('about',null)">About Us</a></li>
+        <li><a href="#" onclick="showPage('pricing',null)">Pricing</a></li>
+        <li><a href="#" onclick="showPage('contact',null)">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:contactglanders@gmail.com">contactglanders@gmail.com</a></li>
+        <li><a href="#">Karachi, Pakistan</a></li>
+        <li><a href="#">Mon–Sat: 8am–8pm</a></li>
+        <li><a href="#">Emergency: 24/7</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Pipe Prince. All rights reserved. Designed for excellence.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- WHATSAPP -->
+<a id="whatsapp" href="https://wa.me/923000000000" target="_blank" title="WhatsApp Us">💬</a>
+
+<!-- TOAST -->
+<div id="toast">✓ Message sent! We'll be in touch soon.</div>
+
+<script>
+  // ===== LOADER =====
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 1400);
+  });
+
+  // ===== NAVBAR SCROLL =====
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // ===== PAGE NAVIGATION =====
+  function showPage(id, linkEl) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (linkEl) linkEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    initReveal();
+  }
+
+  // ===== MOBILE MENU =====
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ===== FAQ ACCORDION =====
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ===== SCROLL REVEAL =====
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  }
+  initReveal();
+
+  // ===== CONTACT FORM =====
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+    e.target.reset();
+  }
+
+  // ===== COUNTER ANIMATION =====
+  function animateCounters() {
+    document.querySelectorAll('.stat-num').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.textContent.replace(/[0-9]/g,'');
+      let start = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { el.textContent = target + suffix; clearInterval(timer); }
+        else el.textContent = Math.floor(start) + suffix;
+      }, 16);
+    });
+  }
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { animateCounters(); heroObserver.disconnect(); }
+  }, { threshold: 0.5 });
+  heroObserver.observe(document.getElementById('hero'));
+</script>
+</body>
+</html>
